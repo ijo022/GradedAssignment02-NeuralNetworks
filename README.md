@@ -1,16 +1,15 @@
-# Files:
+### Files:
 training.py to start training the model (just run)
 models/17.1 - trained model with 2000000 episodes: model_200000.pt or model_200000.h5
 agent.py - motified to PyTorch and deep q learning
 Graded Assignment 02 Presentation - includes link to video presentation
 
-# Dependencies:
-# No other dependencies than those given in the assignment
+### Dependencies:
+No other dependencies than those given in the assignment
 
-# Description of project
+### Description of project - Snake Reinforcement Learning
 Source: https://github.com/DragonWarrior15/snake-rl 
-# Changed all model settings to version v17.1
-# Snake Reinforcement Learning
+ Changed all model settings to version v17.1
 
 Code for training a Deep Reinforcement Learning agent to play the game of Snake.
 The agent takes 2 frames of the game as input (image) and predicts the action values for
