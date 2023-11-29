@@ -8,7 +8,7 @@ import os
 import sys
 
 # some global variables
-version = 'v15.1'
+version = 'v17.1'
 iteration = 188000
 
 with open('model_config/{:s}.json'.format(version), 'r') as f:

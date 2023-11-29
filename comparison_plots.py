@@ -2,10 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-df_base = pd.read_csv('model_logs/v15.1.csv')
-df_batch = pd.read_csv('model_logs/v15.4.csv')
-df_super = pd.read_csv('model_logs/v15.2.csv')
-df_reward = pd.read_csv('model_logs/v15.3.csv')
+df_base = pd.read_csv('model_logs/v17.1.csv')
+df_batch = pd.read_csv('model_logs/v17.1.csv')
+df_super = pd.read_csv('model_logs/v17.1.csv')
+df_reward = pd.read_csv('model_logs/v17.1.csv')
 
 df_base['length_mean_ma'] = df_base['length_mean'].rolling(10).mean()
 df_batch['length_mean_ma'] = df_batch['length_mean'].rolling(10).mean()

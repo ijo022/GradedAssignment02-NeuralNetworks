@@ -6,19 +6,22 @@ import os
 # os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 import numpy as np
-from tqdm import tqdm
+
 from collections import deque
 import pandas as pd
 import time
+import torch
+from tqdm import tqdm 
+
 from utils import play_game, play_game2
 from game_environment import Snake, SnakeNumpy
-import tensorflow as tf
-from agent import DeepQLearningAgent, PolicyGradientAgent,\
-                AdvantageActorCriticAgent, mean_huber_loss
+# import tensorflow as tf
+from agent import DeepQLearningAgent,\
+                AdvantageActorCriticAgent, mean_huber_loss, huber_loss
 import json
 
 # some global variables
-tf.random.set_seed(42)
+torch.manual_seed(42)
 version = 'v17.1'
 
 # get training configurations
@@ -33,24 +36,24 @@ with open('model_config/{:s}.json'.format(version), 'r') as f:
     buffer_size = m['buffer_size']
 
 # define no of episodes, logging frequency
-episodes = 2 * (10**5)
+# episodes = 2 * (10**5)
+#episodes = 2 * (10**3)
+episodes = 200000
 log_frequency = 500
 games_eval = 8
 
 # setup the agent
-agent = DeepQLearningAgent(board_size=board_size, frames=frames, n_actions=n_actions, 
+agent = DeepQLearningAgent(board_size=board_size, frames=frames, n_actions=n_actions,
                            buffer_size=buffer_size, version=version)
 # agent = PolicyGradientAgent(board_size=board_size, frames=frames, n_actions=n_actions, 
         # buffer_size=2000, version=version)
-# agent = AdvantageActorCriticAgent(board_size=board_size, frames=frames, n_actions=n_actions, 
+# agent = AdvantageActorCriticAgent(board_size=board_size, frames=frames, n_actions=n_actions,
                                   # buffer_size=10000, version=version)
 # agent.print_models()
 
 # check in the same order as class hierarchy
 if(isinstance(agent, DeepQLearningAgent)):
     agent_type = 'DeepQLearningAgent'
-if(isinstance(agent, PolicyGradientAgent)):
-    agent_type = 'PolicyGradientAgent'
 if(isinstance(agent, AdvantageActorCriticAgent)):
     agent_type = 'AdvantageActorCriticAgent'
 print('Agent is {:s}'.format(agent_type))
@@ -58,7 +61,7 @@ print('Agent is {:s}'.format(agent_type))
 # setup the epsilon range and decay rate for epsilon
 # define rewrad type and update frequency, see utils for more details
 if(agent_type in ['DeepQLearningAgent']):
-    epsilon, epsilon_end = 1, 0.01
+    epsilon, epsilon_end = 1, 0.05
     reward_type = 'current'
     sample_actions = False
     n_games_training = 8*16
@@ -98,7 +101,7 @@ if(agent_type in ['DeepQLearningAgent']):
             pass
     else:
         # setup the environment
-        games = 512
+        games = 1000
         env = SnakeNumpy(board_size=board_size, frames=frames, 
                     max_time_limit=max_time_limit, games=games,
                     frame_mode=True, obstacles=obstacles, version=version)
@@ -165,3 +168,4 @@ for index in tqdm(range(episodes)):
         agent.save_model(file_path='models/{:s}'.format(version), iteration=(index+1))
         # keep some epsilon alive for training
         epsilon = max(epsilon * decay, epsilon_end)
+

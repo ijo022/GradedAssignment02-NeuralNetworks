@@ -11,7 +11,10 @@ import numpy as np
 from collections import deque
 import matplotlib.pyplot as plt
 import pickle
-import tensorflow as tf
+import numpy as np
+
+
+
 
 class Position:
     """Class for defining any position on a 2D grid
@@ -1552,3 +1555,5 @@ class SnakeNumpy:
         # calculate new board and append
         self._board.appendleft(self._board[0].copy())
         self._set_first_frame()
+
+
