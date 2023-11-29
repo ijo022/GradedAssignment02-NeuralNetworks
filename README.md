@@ -5,11 +5,11 @@
 - Graded Assignment 02 Presentation - includes link to video presentation__
 
 ### Dependencies
-No other dependencies than those given in the assignment
+No other dependencies than those given in the assignment__
 
 ### Description of project - Snake Reinforcement Learning
-Source: https://github.com/DragonWarrior15/snake-rl 
- Changed all model settings to version v17.1
+Source: https://github.com/DragonWarrior15/snake-rl__ 
+Changed all model settings to version v17.1__
 
 Code for training a Deep Reinforcement Learning agent to play the game of Snake.
 The agent takes 2 frames of the game as input (image) and predicts the action values for
