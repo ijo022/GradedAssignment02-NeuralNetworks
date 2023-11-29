@@ -1,10 +1,10 @@
-### Files:
+### Files
 training.py to start training the model (just run)
 models/17.1 - trained model with 2000000 episodes: model_200000.pt or model_200000.h5
 agent.py - motified to PyTorch and deep q learning
 Graded Assignment 02 Presentation - includes link to video presentation
 
-### Dependencies:
+### Dependencies
 No other dependencies than those given in the assignment
 
 ### Description of project - Snake Reinforcement Learning
